@@ -1,0 +1,16 @@
+{
+  "background_color": "#00a01f",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "ismanydaniel.github",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "ismanydaniel.github",
+  "start_url": "/",
+  "theme_color": "#0b85b7",
+  "id": "ismany gym ",
+  "categories": [
+    "fitness"
+  ],
+  "lang": "es"
+}
