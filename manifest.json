@@ -1,9 +1,0 @@
-{
-  "name": "Rutina de Ejercicios Ismany",
-  "short_name": "GymApp",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#10b981",
-  "description": "App de entrenamiento de 4 días"
-}
