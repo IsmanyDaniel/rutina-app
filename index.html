@@ -1,0 +1,108 @@
+html
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerLog - Rutina de Hipertrofia 4 Días</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config for Dark/Neon Theme -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0a0a0c',
+                        cardbg: '#141419',
+                        cardborder: '#22222d',
+                        neon: {
+                            green: '#10b981',
+                            cyan: '#06b6d4',
+                            lime: '#84cc16',
+                            accent: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js for progress graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0c;
+            color: #f3f4f6;
+            touch-action: manipulation;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #22222d;
+            border-radius: 3px;
+        }
+        .neon-glow-green {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col pb-20 md:pb-0 md:pt-16">
+
+    <!-- Header Navigation Desktop -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-cardbg/90 backdrop-blur-md border-b border-cardborder hidden md:block">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-neon-green/20 p-2 rounded-xl border border-neon-green/40">
+                    <i data-lucide="dumbbell" class="text-neon-green w-6 h-6"></i>
+                </div>
+                <span class="font-extrabold text-xl tracking-wider text-white">POWER<span class="text-neon-green">LOG</span></span>
+            </div>
+            <nav class="flex space-x-1">
+                <button onclick="switchTab('routine')" id="tab-btn-routine-dt" class="tab-btn-dt px-4 py-2 rounded-lg font-medium text-sm flex items-center space-x-2 transition-all">
+                    <i data-lucide="calendar" class="w-4 h-4"></i><span>Rutina Semanal</span>
+                </button>
+                <button onclick="switchTab('workout')" id="tab-btn-workout-dt" class="tab-btn-dt px-4 py-2 rounded-lg font-medium text-sm flex items-center space-x-2 transition-all">
+                    <i data-lucide="play-circle" class="w-4 h-4"></i><span>Entrenar Hoy</span>
+                </button>
+                <button onclick="switchTab('timer')" id="tab-btn-timer-dt" class="tab-btn-dt px-4 py-2 rounded-lg font-medium text-sm flex items-center space-x-2 transition-all">
+                    <i data-lucide="timer" class="w-4 h-4"></i><span>Temporizador</span>
+                </button>
+                <button onclick="switchTab('progress')" id="tab-btn-progress-dt" class="tab-btn-dt px-4 py-2 rounded-lg font-medium text-sm flex items-center space-x-2 transition-all">
+                    <i data-lucide="trending-up" class="w-4 h-4"></i><span>Progreso</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Top Mobile Bar -->
+    <div class="md:hidden sticky top-0 z-40 bg-cardbg/90 backdrop-blur-md border-b border-cardborder px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+            <div class="bg-neon-green/20 p-1.5 rounded-lg border border-neon-green/40">
+                <i data-lucide="dumbbell" class="text-neon-green w-5 h-5"></i>
+            </div>
+            <span class="font-black text-lg tracking-wider text-white">POWER<span class="text-neon-green">LOG</span></span>
+        </div>
+        <div class="flex items-center space-x-2">
+            <span id="mobile-unit-toggle" onclick="toggleUnit()" class="text-xs font-bold bg-cardborder px-2.5 py-1 rounded-full text-gray-300 cursor-pointer border border-gray-700">KG</span>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-4xl w-full mx-auto
